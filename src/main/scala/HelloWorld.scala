@@ -37,7 +37,14 @@ object HelloWorld {
     // Also note that if you want to test the connection by querying one of your tables, you can
     // use the tables() method to query the table, rather than specifying a SQL statement. e.g.
     //
-    //   session.table("mytable").show()
+// Depending on the schema ....
+//    Console.println("\n=== query table===\n")
+//    session.sql(
+//      """
+//        |select b.title, b.year_published, a.first_name || ' '||a.last_name AS NAME from BOOK b
+//        |JOIN BOOK_TO_AUTHOR ba on ba.book_uid = b.book_uid
+//        |JOIN AUTHOR a ON ba.author_uid = a.author_uid
+//        |GROUP BY  b.title, b.year_published, a.last_name, a.first_name""".stripMargin).show()
   }
 }
 

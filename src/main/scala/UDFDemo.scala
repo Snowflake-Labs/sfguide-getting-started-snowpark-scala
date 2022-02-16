@@ -17,7 +17,7 @@ import edu.stanford.nlp.sentiment.SentimentCoreAnnotations
  * in Scala.
  *
  * Before running the main method of this class, download the data and JAR files
- * needed for the the demo, then run the main method of the UDFDemoSetup class
+ * needed for the demo, then run the main method of the UDFDemoSetup class
  * to upload those files to internal stages.
  */
 object UDFDemo {
@@ -92,10 +92,10 @@ object UDFDemo {
    */
   def createUDF(session: Session): UserDefinedFunction = {
     Console.println("\n=== Adding dependencies for your UDF ===\n")
-    // Register CoreNLP libraries library JAR files as dependencies to support
+    // Register CoreNLP library JAR files as dependencies to support
     // the UDF. The JAR files are already in the Snowflake stage named by
-    // jarStageName. The stage created and JARs uploaded when you ran code in
-    // UDFDemoSetup.scala.
+    // jarStageName. The stage was created and JARs were uploaded when you ran
+    // the code in UDFDemoSetup.scala.
     session.addDependency(s"@$jarStageName/stanford-corenlp-3.6.0.jar.gz")
     session.addDependency(s"@$jarStageName/stanford-corenlp-3.6.0-models.jar.gz")
     session.addDependency(s"@$jarStageName/slf4j-api.jar.gz")
@@ -139,7 +139,7 @@ object UDFDemo {
   }
 
   /*
-   * Uploads tweet data from a demo CSV, creates a UDF, then uses the UDF to
+   * Reads tweet data from a demo CSV, creates a UDF, then uses the UDF to
    * discover the sentiment of tweet text.
    */
   def discoverHappyTweets(session: Session): String = {
